@@ -55,8 +55,10 @@ You've created the organization! Now complete these 3 simple steps to get your w
 1. You should still be in Settings. Click **Pages** in the left sidebar
 
 2. Under **Build and deployment**, find **Source**:
-   - **Branch**: Select `copilot/create-website-with-github-pages`
+   - **Branch**: Select `copilot/create-website-with-github-pages` (or `main` if merged)
    - **Folder**: Select `/ (root)`
+   
+   💡 **Note**: Choose the branch that contains your website files (index.html, styles.css)
 
 3. Click **Save**
 
@@ -68,7 +70,7 @@ You've created the organization! Now complete these 3 simple steps to get your w
 
 ---
 
-## 🎉 Step 4: Visit Your Website
+## 🎉 Verify Your Website
 
 **Open in browser**: https://TheGrowthClub.github.io
 

@@ -44,8 +44,9 @@
 │                                                                │
 │  1. In Settings, click "Pages" (left sidebar)                 │
 │  2. Under Source:                                              │
-│     - Branch: copilot/create-website-with-github-pages        │
+│     - Branch: copilot/create-website-with-github-pages (or main) │
 │     - Folder: / (root)                                         │
+│     💡 Choose the branch with your website files              │
 │  3. Click "Save"                                               │
 │  4. Wait 2-5 minutes for deployment                            │
 │                                                                │
