@@ -110,6 +110,95 @@
             color: #1a1a2e;
         }
 
+        /* Hamburger Menu Styles */
+        .hamburger-menu {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-menu:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.7);
+        }
+
+        .hamburger-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+        }
+
+        .mobile-nav-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            z-index: 999;
+            padding: 80px 20px 20px 20px;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-nav-menu.active {
+            right: 0;
+        }
+
+        .mobile-nav-menu .tab-button {
+            width: 100%;
+            margin-bottom: 10px;
+            text-align: left;
+            display: block;
+        }
+
         .tab-content {
             display: none;
         }
@@ -435,17 +524,19 @@
                 border-radius: 15px;
             }
 
-            .nav-tabs {
-                flex-wrap: wrap;
-                gap: 8px;
-                padding: 15px;
+            /* Show hamburger menu on mobile */
+            .hamburger-menu {
+                display: flex;
             }
 
-            .tab-button {
-                flex: 1 1 calc(50% - 8px);
-                min-width: calc(50% - 8px);
-                padding: 12px 10px;
-                font-size: 0.85rem;
+            .mobile-menu-overlay,
+            .mobile-nav-menu {
+                display: block;
+            }
+
+            /* Hide desktop nav tabs on mobile */
+            .nav-tabs {
+                display: none;
             }
 
             .section {
@@ -594,6 +685,26 @@
     </style>
 </head>
 <body>
+    <!-- Hamburger Menu Button -->
+    <div class="hamburger-menu" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav-menu">
+        <button class="tab-button active" onclick="showTabMobile('overview')">📊 Overview</button>
+        <button class="tab-button" onclick="showTabMobile('knowledge')">🧠 Knowledge Agents</button>
+        <button class="tab-button" onclick="showTabMobile('english')">📚 English Curriculum</button>
+        <button class="tab-button" onclick="showTabMobile('debate')">💬 Political Debate</button>
+        <button class="tab-button" onclick="showTabMobile('tools')">🛠️ Other Tools</button>
+        <button class="tab-button" onclick="showTabMobile('quick')">⚡ Quick Reference</button>
+    </div>
+
     <div class="banner">
         <div class="banner-image"></div>
         <div class="banner-content">
@@ -1430,6 +1541,38 @@
             
             // Set active button
             event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger-menu');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const menu = document.querySelector('.mobile-nav-menu');
+            
+            hamburger.classList.toggle('active');
+            overlay.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+
+        function showTabMobile(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active from all buttons (both desktop and mobile)
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Set active button
+            event.target.classList.add('active');
+            
+            // Close mobile menu
+            toggleMobileMenu();
             
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
