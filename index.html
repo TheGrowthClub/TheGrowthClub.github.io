@@ -395,18 +395,187 @@
             border-left-color: #ffd700;
         }
 
+        /* Responsive Design - Mobile First Approach */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .experts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
+            body {
+                padding: 0;
+            }
+
+            .banner {
+                height: 250px;
+            }
+
+            .banner-image {
+                height: 150px;
+            }
+
             .banner h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                padding: 0 20px;
             }
             
             .banner p {
-                font-size: 1rem;
+                font-size: 0.9rem;
+                padding: 0 20px;
+            }
+
+            .container {
+                padding: 15px;
+                margin: 20px 10px;
+                border-radius: 15px;
+            }
+
+            .nav-tabs {
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 15px;
+            }
+
+            .tab-button {
+                flex: 1 1 calc(50% - 8px);
+                min-width: calc(50% - 8px);
+                padding: 12px 10px;
+                font-size: 0.85rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+
+            .command-badge {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+
+            .premium-badge {
+                align-self: flex-start;
             }
             
             .experts-grid,
-            .quick-commands {
+            .quick-commands,
+            .debate-agents {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .expert-card,
+            .command-item,
+            .level-card,
+            .debate-card {
+                padding: 15px;
+            }
+
+            .expert-name,
+            .debate-name {
+                font-size: 1.2rem;
+            }
+
+            .level-name {
+                font-size: 1.1rem;
+            }
+
+            .info-box {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+
+            .feature-list li {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            .footer {
+                padding: 20px 15px;
+                margin-top: 30px;
+            }
+
+            .footer p {
+                font-size: 0.8rem;
+            }
+
+            /* Discord invite button responsive */
+            a[href*="discord.gg"] {
+                padding: 12px 30px !important;
+                font-size: 1rem !important;
+                width: 90%;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner h1 {
+                font-size: 1.5rem;
+            }
+
+            .banner p {
+                font-size: 0.8rem;
+            }
+
+            .container {
+                margin: 15px 5px;
+                padding: 10px;
+            }
+
+            .tab-button {
+                flex: 1 1 100%;
+                min-width: 100%;
+                font-size: 0.8rem;
+                padding: 10px;
+            }
+
+            .section {
+                padding: 15px;
+            }
+
+            .section-title h2 {
+                font-size: 1.3rem;
+            }
+
+            .expert-card,
+            .command-item,
+            .level-card {
+                padding: 12px;
+            }
+
+            .command-code {
+                font-size: 0.9rem;
+            }
+
+            a[href*="discord.gg"] {
+                padding: 10px 20px !important;
+                font-size: 0.9rem !important;
+                width: 95%;
+            }
+        }
+
+        /* Landscape orientation for tablets */
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .experts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .debate-agents {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -482,6 +651,17 @@
                         <li><strong>Request</strong> — Use this to report issues, problems, or behavior violations. Your voice matters!</li>
                         <li><strong>Requests</strong> — Suggest ideas, request roles, or ask for features to improve the server.</li>
                         <li><strong>Announcements</strong> — Important updates, events, or server-wide notices.</li>
+                    </ul>
+                    
+                    <h3 style="color: #ffd700; margin-bottom: 20px; margin-top: 40px; font-size: 1.5rem;">🤔 Philosophy Agents</h3>
+                    <p style="font-size: 1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.85); margin-bottom: 20px;">
+                        Access wisdom from diverse philosophical traditions using the <strong>!wisdom</strong> command:
+                    </p>
+                    <ul class="feature-list">
+                        <li><strong>Marcus 🏛️ (Stoicism)</strong> — "!wisdom Marcus, how do I handle stress?" — Learn resilience and inner tranquility.</li>
+                        <li><strong>Simone 🖤 (Existentialism)</strong> — "!wisdom What is the meaning of life?" — Explore authenticity, freedom, and meaning.</li>
+                        <li><strong>Wei ☯️ (Eastern Philosophy)</strong> — "!wisdom How do I find balance?" — Discover Tao, Zen, and Confucian wisdom.</li>
+                        <li><strong>Bertrand 🔬 (Analytic/Pragmatism)</strong> — "!wisdom What does 'truth' actually mean?" — Think clearly about logic and practical philosophy.</li>
                     </ul>
                     
                     <div style="margin-top: 25px; text-align: center;">
@@ -841,12 +1021,47 @@
                     </div>
                     <span class="premium-badge">Premium</span>
                 </div>
-                <div class="info-box">
-                    <p style="font-size: 1rem; line-height: 1.6;">
-                        Explore fundamental questions about existence, knowledge, ethics, and meaning. The wisdom command provides 
-                        access to philosophical insights from Western and Eastern traditions, helping you think critically about 
-                        life's biggest questions and develop your own philosophical perspective.
-                    </p>
+                <div class="experts-grid">
+                    <div class="expert-card" onclick="this.classList.toggle('expanded')">
+                        <div class="expert-name">Marcus 🏛️</div>
+                        <div class="expert-specialty">Stoicism</div>
+                        <div class="expert-description">
+                            Expert in Stoic philosophy drawing from Marcus Aurelius, Epictetus, and Seneca. Teaches the art of distinguishing 
+                            what's within your control from what isn't, cultivating virtue, accepting fate with grace, and maintaining inner 
+                            tranquility regardless of external circumstances. Guides you in practical wisdom for daily resilience.
+                        </div>
+                        <div class="expand-indicator">Click to learn more →</div>
+                    </div>
+                    <div class="expert-card" onclick="this.classList.toggle('expanded')">
+                        <div class="expert-name">Simone 🖤</div>
+                        <div class="expert-specialty">Existentialism</div>
+                        <div class="expert-description">
+                            Scholar of existential philosophy inspired by Sartre, Camus, and Kierkegaard. Explores questions of meaning, 
+                            freedom, authenticity, and absurdity in human existence. Helps you confront life's fundamental questions, 
+                            embrace radical freedom, create your own meaning, and live authentically despite uncertainty.
+                        </div>
+                        <div class="expand-indicator">Click to learn more →</div>
+                    </div>
+                    <div class="expert-card" onclick="this.classList.toggle('expanded')">
+                        <div class="expert-name">Wei ☯️</div>
+                        <div class="expert-specialty">Eastern Philosophy (Tao/Zen/Confucius)</div>
+                        <div class="expert-description">
+                            Master of Eastern wisdom traditions including Taoism, Zen Buddhism, and Confucianism. Teaches the Way (Tao), 
+                            wu-wei (effortless action), mindfulness, harmony with nature, and ethical living through virtue. Guides you 
+                            in finding balance, living simply, and cultivating inner peace through ancient Eastern practices.
+                        </div>
+                        <div class="expand-indicator">Click to learn more →</div>
+                    </div>
+                    <div class="expert-card" onclick="this.classList.toggle('expanded')">
+                        <div class="expert-name">Bertrand 🔬</div>
+                        <div class="expert-specialty">Analytic Philosophy & Pragmatism</div>
+                        <div class="expert-description">
+                            Expert in analytic philosophy and pragmatism, following Russell, Wittgenstein, and William James. Focuses on 
+                            logical analysis, clarity of thought, language philosophy, and practical consequences of ideas. Helps you think 
+                            rigorously about truth, meaning, knowledge, and how philosophical ideas work in real life.
+                        </div>
+                        <div class="expand-indicator">Click to learn more →</div>
+                    </div>
                 </div>
             </div>
         </div>
